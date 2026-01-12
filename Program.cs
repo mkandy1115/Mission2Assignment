@@ -4,13 +4,24 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        System.Console.Write("Welcome to the dice throwing simulator!\nHow many dice rolls would you like to simulate?\nNumber?:");
+        System.Console.Write(
+            "Welcome to the dice throwing simulator!\n" +
+            "How many dice rolls would you like to simulate?\n" +
+            "Number?:");
+
         string userInput = System.Console.ReadLine();
         int numRolls = int.Parse(userInput);
 
         RollDices Dices = new RollDices(numRolls);
-        decimal[] percentages = Dices.SimulateRolls();
+        int[] rollCounts = Dices.SimulateRolls();
 
+        decimal[] percentages = new decimal[13];
+
+        for (int i = 2; i <= 12; i++)
+        {
+            percentages[i] = (decimal)rollCounts[i] / numRolls * 100;
+        }
+        
         System.Console.WriteLine(
             "\nDICE ROLLING SIMULATION RESULTS\n" +
             "Each \"*\" represents 1% of the total number of rolls." +

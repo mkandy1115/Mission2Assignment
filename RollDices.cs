@@ -18,7 +18,7 @@ namespace Mission2Assignment
             numRolls = userNum;
         }
 
-        public decimal[] SimulateRolls()
+        public int[] SimulateRolls()
         {
             int[] rollCounts = new int[13]; // index 0 and 1 will be unused
             Random rand = new Random();
@@ -29,12 +29,8 @@ namespace Mission2Assignment
                 int sum = die1 + die2;
                 rollCounts[sum]++;
             }
-            decimal[] percentages = new decimal[13];
-            for (int i = 2; i <= 12; i++)
-            {
-                percentages[i] = (decimal)rollCounts[i] / numRolls * 100;
-            }
-            return percentages;
+            
+            return rollCounts;
         }
 
     }
